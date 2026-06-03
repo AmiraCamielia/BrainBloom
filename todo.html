@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainBloom</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.currentUser = localStorage.getItem('brainBloomAuthUser') || '';
+        if (!window.currentUser) window.location.replace('index.html');
+    </script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="dashboard.html">BrainBloom</a>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">Menu</button>
+        <nav id="mainNav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="timer.html">Timer</a>
+            <a class="active" href="todo.html">To-do List</a>
+            <a href="study-plan.html">Study Plan</a>
+            <a href="index.html" onclick="logoutUser(event)">Logout</a>
+        </nav>
+    </header>
+    <main class="page">
+        <section class="page-head">
+            <div>
+                <p class="eyebrow">Task planning</p>
+                <h1>To-do List</h1>
+                <p class="muted">Tasks are saved in this browser using local storage.</p>
+            </div>
+        </section>
+
+        <section class="todo-shell">
+            <form class="todo-form" onsubmit="addTodo(event)">
+                <label>
+                    Task
+                    <input type="text" id="todoInput" placeholder="Add a study task" required>
+                </label>
+                <label>
+                    Priority
+                    <select id="todoPriority">
+                        <option value="none">No priority</option>
+                        <option value="important">Important</option>
+                        <option value="medium">Medium</option>
+                    </select>
+                </label>
+                <label>
+                    Due Date
+                    <input type="date" id="todoDueDate">
+                </label>
+                <button type="submit" class="primary-btn">Add Task</button>
+            </form>
+            <ul class="todo-list" id="todoList"></ul>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

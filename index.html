@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainBloom | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <section class="auth-panel">
+            <div>
+                <p class="eyebrow">BrainBloom</p>
+                <h1 id="authTitle">Login</h1>
+                <p class="muted">Plan your study time, track tasks, and view your weekly learning progress.</p>
+            </div>
+
+            <div class="alert alert-error" id="authError" hidden></div>
+            <div class="alert alert-success" id="authSuccess" hidden></div>
+
+            <form class="auth-form" id="authForm">
+                <input type="hidden" name="action" id="authAction" value="login">
+
+                <label>
+                    Username
+                    <span class="input-wrap">
+                        <input type="text" name="username" placeholder="Enter username" required>
+                        <i class="bxf bx-user"></i>
+                    </span>
+                </label>
+
+                <label>
+                    Password
+                    <span class="input-wrap">
+                        <input type="password" name="password" placeholder="Enter password" required>
+                        <i class="bxf bx-lock"></i>
+                    </span>
+                </label>
+
+                <div class="form-row" id="loginTools">
+                    <label class="check"><input type="checkbox"> Remember me</label>
+                    <a href="#" onclick="alert('Password hint: student / 12345'); return false;">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="primary-btn" id="authButton">Login</button>
+            </form>
+
+            <p class="switch-link" id="authSwitch">
+                Do not have an account? <a href="index.html?mode=register">Create Account</a>
+            </p>
+
+            <p class="demo-login">Demo login: <strong>student</strong> / <strong>12345</strong></p>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

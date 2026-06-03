@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainBloom</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.currentUser = localStorage.getItem('brainBloomAuthUser') || '';
+        if (!window.currentUser) window.location.replace('index.html');
+    </script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="dashboard.html">BrainBloom</a>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">Menu</button>
+        <nav id="mainNav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="timer.html">Timer</a>
+            <a href="todo.html">To-do List</a>
+            <a class="active" href="study-plan.html">Study Plan</a>
+            <a href="index.html" onclick="logoutUser(event)">Logout</a>
+        </nav>
+    </header>
+    <main class="page">
+        <section class="page-head">
+            <div>
+                <p class="eyebrow">Data view page 1</p>
+                <h1>Study Plan</h1>
+                <p class="muted">Create your own study plans. Start one to open the study timer with the saved duration.</p>
+            </div>
+        </section>
+
+        <section class="planner-form-panel">
+            <form class="planner-form" onsubmit="addStudyPlan(event)">
+                <label>Subject
+                    <input type="text" id="planSubject" placeholder="Example: Mathematics" required>
+                </label>
+                <label>Focus
+                    <input type="text" id="planFocus" placeholder="Example: Algebra exercises" required>
+                </label>
+                <label>Date
+                    <input type="date" id="planDate" required>
+                </label>
+                <label>Hours
+                    <input type="number" id="planHours" min="0" max="12" value="0">
+                </label>
+                <label>Minutes
+                    <input type="number" id="planMinutes" min="1" max="59" value="25" required>
+                </label>
+                <button type="submit" class="primary-btn">Add Planner</button>
+            </form>
+        </section>
+
+        <section class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Focus</th>
+                        <th>Duration</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="studyPlanTable">
+                    <tr>
+                        <td colspan="6" class="empty-cell">No study planner yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

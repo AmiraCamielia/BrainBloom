@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainBloom</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.currentUser = localStorage.getItem('brainBloomAuthUser') || '';
+        if (!window.currentUser) window.location.replace('index.html');
+    </script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="dashboard.html">BrainBloom</a>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">Menu</button>
+        <nav id="mainNav">
+            <a href="dashboard.html">Dashboard</a>
+            <a class="active" href="timer.html">Timer</a>
+            <a href="todo.html">To-do List</a>
+            <a href="study-plan.html">Study Plan</a>
+            <a href="index.html" onclick="logoutUser(event)">Logout</a>
+        </nav>
+    </header>
+    <main class="page">
+        <section class="page-head">
+            <div>
+                <p class="eyebrow">Focus tools</p>
+                <h1>Pomodoro & Study Timer</h1>
+                <p class="muted">Use the fixed 25 minute Pomodoro timer or set your own study duration.</p>
+            </div>
+        </section>
+
+        <section class="timer-layout">
+            <article class="timer-panel">
+                <div class="segmented">
+                    <button type="button" class="active" data-mode="pomodoro" onclick="setTimerMode('pomodoro')">Pomodoro 25:00</button>
+                    <button type="button" data-mode="custom" onclick="setTimerMode('custom')">Study Timer</button>
+                </div>
+
+                <div class="timer-display" id="timerDisplay">25:00</div>
+                <p id="timerLabel" class="muted center">Pomodoro focus session</p>
+                <p id="linkedPlanLabel" class="linked-plan"></p>
+
+                <div class="custom-time" id="customInputs">
+                    <label>Hours <input type="number" id="hours" min="0" max="12" value="0"></label>
+                    <label>Minutes <input type="number" id="minutes" min="0" max="59" value="25"></label>
+                    <label>Seconds <input type="number" id="seconds" min="0" max="59" value="0"></label>
+                </div>
+
+                <div class="timer-actions">
+                    <button type="button" class="primary-btn" onclick="startTimer()">Start</button>
+                    <button type="button" class="secondary-btn" onclick="pauseTimer()">Pause</button>
+                    <button type="button" class="secondary-btn" onclick="resetTimer()">Reset</button>
+                </div>
+            </article>
+
+            <article class="info-panel">
+                <h2>Recommended Flow</h2>
+                <ul class="clean-list">
+                    <li>Pomodoro: study for 25 minutes.</li>
+                    <li>Short break: rest for 5 minutes.</li>
+                    <li>After 4 Pomodoro sessions, take a longer break.</li>
+                    <li>Use Study Timer to a custom study session.</li>
+                </ul>
+                <div class="alert alert-info" id="timerAlert">Timer ready.</div>
+            </article>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

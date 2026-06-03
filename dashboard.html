@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainBloom</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.currentUser = localStorage.getItem('brainBloomAuthUser') || '';
+        if (!window.currentUser) window.location.replace('index.html');
+    </script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="dashboard.html">BrainBloom</a>
+        <button class="menu-toggle" type="button" onclick="toggleMenu()">Menu</button>
+        <nav id="mainNav">
+            <a class="active" href="dashboard.html">Dashboard</a>
+            <a href="timer.html">Timer</a>
+            <a href="todo.html">To-do List</a>
+            <a href="study-plan.html">Study Plan</a>
+            <a href="index.html" onclick="logoutUser(event)">Logout</a>
+        </nav>
+    </header>
+    <main class="page">
+        <section class="page-head">
+            <div>
+                <p class="eyebrow">Welcome, <span id="welcomeUser">student</span></p>
+                <h1>Study Studio</h1>
+                <p class="muted">A live dashboard for your planner, timer sessions, and to-do progress.</p>
+            </div>
+        </section>
+
+        <section class="summary-grid">
+            <article class="summary-card"><span>Total Study Time</span><strong id="totalStudyTime">0m</strong><small>from finished timer sessions</small></article>
+            <article class="summary-card"><span>Timer Sessions</span><strong id="totalSessions">0</strong><small>Pomodoro and study timers</small></article>
+            <article class="summary-card"><span>Planner Items</span><strong id="totalPlans">0</strong><small>your scheduled study blocks</small></article>
+            <article class="summary-card"><span>Completed Plans</span><strong id="completedPlans">0</strong><small>planner items marked done</small></article>
+        </section>
+
+        <div class="alert alert-info empty-dashboard" id="emptyDashboard">
+            No activity yet. Add a study planner item, start the timer, or create to-do tasks to fill this dashboard.
+        </div>
+
+        <section class="chart-grid">
+            <article class="chart-card feature-card"><h2>1. Subject Focus Mix</h2><canvas id="studyHoursChart"></canvas></article>
+            <article class="chart-card"><h2>2. Planner Status Split</h2><canvas id="plannerStatusChart"></canvas></article>
+            <article class="chart-card wide-card"><h2>3. Seven Day Focus Flow</h2><canvas id="dailyFocusChart"></canvas></article>
+            <article class="chart-card"><h2>4. Timer Mode Balance</h2><canvas id="timerTypeChart"></canvas></article>
+            <article class="chart-card infographic-card"><h2>5. Today's Focus Score</h2><div class="focus-score" id="focusScore"><span>0</span><small>/100</small></div><p class="muted center" id="focusScoreText">Use the timer or finish tasks today to increase your score.</p></article>
+            <article class="chart-card infographic-card"><h2>6. Focus Streak</h2><div class="streak-flame" id="streakFlame"><span>0</span></div><div class="streak-board" id="streakBoard"></div><p class="streak-title" id="streakTitle">No streak yet</p></article>
+            <article class="chart-card"><h2>7. To-do Priority Mix</h2><div class="priority-bars" id="priorityBars"></div></article>
+            <article class="chart-card"><h2>8. Due Soon Tasks</h2><div class="due-list" id="dueSoonList"></div></article>
+            <article class="chart-card"><h2>9. Subject Completion</h2><div class="subject-progress" id="subjectProgressList"></div></article>
+            <article class="chart-card"><h2>10. Session Rhythm</h2><div class="rhythm-list" id="sessionRhythmList"></div></article>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
